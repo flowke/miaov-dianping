@@ -1,5 +1,6 @@
 /* pages/cityindex/index.wxss */
 page {
+  height: 100%;
   background: #f0f0f0;
 }
 .city-group {
@@ -19,11 +20,11 @@ page {
   font: 28rpx/66rpx Arial,"微软雅黑";
   color: #999;
 }
-.city-hot {
+.city-highlight {
   padding-left: 24rpx;
   overflow: hidden;
 }
-.city-hot text {
+.city-highlight text {
   float: left;
   margin: 5rpx;
   width: 208rpx;
@@ -37,8 +38,9 @@ page {
 .index-list-wrap {
   display: flex;
   position: fixed;
+  z-index: 9999;
   top: 0;
-  right: 7rpx;
+  right: 14rpx;
   width: 44rpx;
   height: 100%;
 }
@@ -52,4 +54,20 @@ page {
   font: 18rpx/32rpx Arial,"微软雅黑";
   text-align: center;
   color: #446889;
+}
+.scroll-mask{
+  position: fixed;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background: red;
+}
+.forbit-overflow{
+  height: 100%;
+  overflow: hidden;
+}
+.approve-overflow{
+  overflow: auto;
 }
