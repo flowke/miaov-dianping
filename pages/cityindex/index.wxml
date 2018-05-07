@@ -1,0 +1,75 @@
+<view class='city-list'>
+  <view class='city-group'>
+    <view class='city-item'>北京<text>GPS定位</text></view>
+  </view>
+  <view class='city-index'>热门城市</view>
+  <view class='city-hot'>
+    <text>北京</text>
+    <text>成都</text>
+    <text>重庆</text>
+    <text>广州</text>
+    <text>杭州</text>
+    <text>南京</text>
+  </view>
+  <view class='city-index'>A</view>
+  <view class='city-group'>
+    <view class='city-item'>鞍山</view>
+    <view class='city-item'>安庆</view>
+    <view class='city-item'>安阳</view>
+    <view class='city-item'>安丘</view>
+    <view class='city-item'>安顺</view>
+    <view class='city-item'>安康</view>
+    <view class='city-item'>安州区</view>
+    <view class='city-item'>阿荣旗</view>
+    <view class='city-item'>阿克苏</view>
+    <view class='city-item'>阿图什市</view>
+    <view class='city-item'>阿勒泰市</view>
+    <view class='city-item'>阿拉善盟</view>
+    <view class='city-item'>安吉</view>
+    <view class='city-item'>安岳</view>
+    <view class='city-item'>安平</view>
+    <view class='city-item'>安溪</view>
+    <view class='city-item'>安宁</view>
+    <view class='city-item'>安化</view>
+  </view> 
+  <view class='city-index'>B</view>
+  <view class='city-group'>
+    <view class='city-item'>北京</view>
+    <view class='city-item'>包头</view>
+    <view class='city-item'>保定</view>
+    <view class='city-item'>蚌埠</view>
+    <view class='city-item'>亳州</view>
+    <view class='city-item'>滨州</view>
+    <view class='city-item'>宝鸡</view>
+    <view class='city-item'>白城</view>
+    <view class='city-item'>霸州</view>
+    <view class='city-item'>巴彦淖尔</view>
+  </view>
+</view>
+<view class='index-list-wrap'>
+  <view class='index-list'>
+    <text>热门城市</text>
+    <text>A</text>
+    <text>B</text>
+    <text>C</text>
+    <text>D</text>
+    <text>E</text>
+    <text>F</text>
+    <text>G</text>
+    <text>H</text>
+    <text>J</text>
+    <text>K</text>
+    <text>L</text>
+    <text>M</text>
+    <text>N</text>
+    <text>P</text>
+    <text>Q</text>
+    <text>R</text>
+    <text>S</text>
+    <text>T</text>
+    <text>W</text>
+    <text>X</text>
+    <text>Y</text>
+    <text>Z</text>
+  </view>
+</view>

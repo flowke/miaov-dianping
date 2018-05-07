@@ -1,0 +1,33 @@
+<view class='page'>
+  <view class='shop-details'>
+    <view class='list'>
+        <image src='/common/img.png' class='list-img'></image>
+        <view class='list-details'>
+          <view class='list-title'>大碗居（万柳店）</view>
+          <view class='clear'>
+            <view class='score'>
+              <view class='score-nub'></view> 
+            </view>
+            <text class='price'>￥81/人</text>
+          </view>
+          <view class='clear score-details'>
+            <text>环境:8.2</text>
+            <text>服务:8.2</text>
+          </view>
+          <view class='place'>
+            草桥<text class='classify'>北京菜</text>
+          </view>
+        </view>
+    </view>
+    <view class='shop-info'>
+      <text class='time'>营业至23:00</text>
+      <text class='box'>包厢</text>
+      <text class='wifi'>WIFI</text>
+    </view>
+    <view class='distance'>
+      <view class='position'>辉煌国际大厦西6号楼319室</view>
+      <view class='time'>距您步行600m,需要7分钟</view>
+    </view>
+  </view>  
+  <button type='default' class='btn'>收藏</button>
+</view>

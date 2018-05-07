@@ -1,0 +1,55 @@
+/* pages/cityindex/index.wxss */
+page {
+  background: #f0f0f0;
+}
+.city-group {
+  padding-left: 29rpx;
+  background: #fff;
+  border-bottom: 1px solid #dfdfdf;
+}
+.city-item {
+  font: 26rpx/90rpx "宋体";
+  border-bottom: 1px solid #dfdfdf;
+}
+.city-item:last-of-type {
+  border-bottom: none;
+}
+.city-index {
+  padding-left: 29rpx;
+  font: 28rpx/66rpx Arial,"微软雅黑";
+  color: #999;
+}
+.city-hot {
+  padding-left: 24rpx;
+  overflow: hidden;
+}
+.city-hot text {
+  float: left;
+  margin: 5rpx;
+  width: 208rpx;
+  height: 70rpx;
+  border: 1px solid #dfdfdf;
+  background: #fff;
+  font: 26rpx/70rpx "宋体";
+  text-align: center;
+  color: #000;
+}
+.index-list-wrap {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 7rpx;
+  width: 44rpx;
+  height: 100%;
+}
+.index-list {
+  width: 44rpx;
+  margin: auto;
+}
+.index-list text {
+  display: block;
+  margin: 5rpx 0;
+  font: 18rpx/32rpx Arial,"微软雅黑";
+  text-align: center;
+  color: #446889;
+}

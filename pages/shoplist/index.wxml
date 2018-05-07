@@ -1,0 +1,22 @@
+<import src="/common/template/list.wxml" />
+<scroll-view class='page' scroll-y>
+    <view class='inner'>
+      <view class='nav'>
+        <text id='range-btn' class='active'>500米</text>
+        <text id='sort-btn'>离我最近</text>
+        <view id='range-menu' class='menu'>
+          <view class='menu-item menu-item-active'>500米</view>
+          <view class='menu-item'>1000米</view>
+          <view class='menu-item'>2000米</view>
+          <view class='menu-item'>5000米</view>
+        </view>
+        <view id='sort-menu' class='menu'>
+          <view class='menu-item menu-item-active'>离我最近</view>
+          <view class='menu-item'>评价最高</view>
+        </view>
+      </view>
+      <template is="list" />
+    </view>  
+    <view class='loading'>正在加载更多内容…</view>
+    <view class='mask'></view>
+</scroll-view>

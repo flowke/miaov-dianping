@@ -1,0 +1,76 @@
+/**index.wxss**/
+@import "/common/style/list.wxss";
+page {
+  height: 100%;
+  background: #f0f0f0;
+}
+.navigator-hover {
+    background: transparent;
+}
+.page {
+  height: 100%;
+}
+.loading {
+  font: 26rpx/80rpx "宋体";
+  text-align: center;
+  color: #666;  
+}
+.header {
+  height: 92rpx;
+  background: #181818;
+} 
+.city {
+  position: relative;
+  float: left;
+  color: #e2b689;
+  padding: 0 31rpx;
+  font: 26rpx/92rpx "宋体";
+}
+.city:after {
+  content: "";
+  position: absolute;
+  left: 92rpx;
+  top: 42rpx;
+  border: 8.333rpx solid;
+  border-color: #d4ab81 transparent transparent;
+}
+.userinfo {
+  float: right;
+  display: flex;
+  width: 106.25rpx;
+  height: 92rpx;
+}
+.userinfo image {
+  margin: auto;
+  width: 48rpx;
+  height: 48rpx;
+}
+.nav {
+  display: flex;
+  height: 202rpx;
+  background: #fff;
+}
+.nav navigator {
+  margin: auto 0;
+  width: 250rpx;
+  text-align: center;
+}
+.nav image {
+  width:  88rpx;
+  height: 88rpx;
+}
+.nav text {
+  display: block;
+  font: 25rpx/67rpx "宋体";
+  text-align: center;
+}
+.hot {
+  margin-top: 19rpx;
+  background: #fff;
+}
+.title {
+  padding: 10rpx 0 0 30rpx;
+  display: block;
+  font: 28rpx/44rpx "宋体";
+  color: #777;
+}

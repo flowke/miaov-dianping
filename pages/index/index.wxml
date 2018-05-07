@@ -1,0 +1,36 @@
+<import src="/common/template/list.wxml" />
+<scroll-view class='page' scroll-y>
+    <view class='header'>
+        <navigator url='/pages/cityindex/index' class='city'>北京</navigator>
+        <navigator url='/pages/user/index' class='userinfo'>
+          <image src='/common/ico/user.png'></image>
+        </navigator>
+    </view>
+    <view class='nav'>
+        <navigator url='/pages/shoplist/index'>
+          <image src='/common/ico/food.png' mode="{{aspectFit}}"></image>
+          <text>美食</text>
+        </navigator>
+        <navigator url='/pages/shoplist/index'>
+          <image src='/common/ico/ktv.png' mode="{{aspectFit}}"></image>
+          <text>KTV</text>
+        </navigator>
+        <navigator url='/pages/shoplist/index'>
+          <image src='/common/ico/pedicure.png' mode="{{aspectFit}}"></image>
+          <text>足疗/按摩</text>
+        </navigator>
+        <navigator url='/pages/shoplist/index'>
+          <image src='/common/ico/hotel.png'mode="{{aspectFit}}"></image>
+          <text>酒店</text>
+        </navigator>
+        <navigator url='/pages/shoplist/index'>
+          <image src='/common/ico/hair.png'mode="{{aspectFit}}"></image>
+          <text>丽人/美发</text>
+        </navigator>
+    </view>
+    <view class='hot'>
+      <text class='title'>猜你喜欢</text>
+      <template is="list" />
+    </view>
+    <view class='loading'>正在加载更多内容…</view>
+</scroll-view>

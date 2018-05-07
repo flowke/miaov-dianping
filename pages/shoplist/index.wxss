@@ -1,0 +1,81 @@
+/* pages/shoplist/index.wxss */
+@import "/common/style/list.wxss";
+@import "/common/style/font.wxss";
+page {
+  height: 100%;
+  background: #f0f0f0;
+}
+.navigator-hover {
+    background: transparent;
+}
+.page {
+  height: 100%;
+}
+.loading {
+  font: 26rpx/80rpx "宋体";
+  text-align: center;
+  color: #666;  
+}
+.inner {
+  background: #fff;
+}
+.nav {
+  display: flex;
+  position: relative;
+  height: 80rpx;
+  border-bottom: 1px solid #dfdfdf;
+  z-index: 10;
+  background: #fff;
+}
+.nav text {
+  flex: 1;
+  font: 24rpx/80rpx "宋体";
+  text-align: center;
+  color: #666;
+}
+#range-btn {
+  border-right: 1rpx solid #f0f0f0;
+}
+#sort-btn {
+  border-left: 1rpx solid #f0f0f0;
+}
+.nav text::after{
+  font-family: "iconfont";
+  content: "\e60a";
+}
+.nav .active::after{
+  font-family: "iconfont";
+  content: "\e60b";
+}
+.menu {
+  display: none;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 80rpx;
+  width: 100%;
+  background: #fff;
+  padding: 0 20rpx;
+}
+.menu-item {
+  font: 26rpx/80rpx "宋体";
+  text-indent: 30rpx;
+  color: #000;
+  border-bottom: 1px solid #dfdfdf;
+}
+.menu-item:last-of-type {
+  border: none;
+}
+.menu-item-active {
+  color: #ff7a2d;
+}
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background: rgba(0, 0, 0, .5);
+  display: none;
+}
