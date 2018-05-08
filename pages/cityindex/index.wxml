@@ -2,26 +2,53 @@
   class='city-list'
 >
   <view class='city-group'>
-    <view class='city-item'>北京<text>GPS定位</text></view>
+    <view
+      class="city-item"
+      wx:if="{{!hasAuthLocation}}"
+      catch:tap="onAuthLocation"
+    >
+      请点击授权位置以获取位置服务
+    </view>
+
+    <view
+      class='city-item'
+      wx:if="{{locateCity}}"
+    >{{locateCity}}<text class="locate-type">GPS定位</text></view>
   </view>
-  <view class='city-index history'>历史访问城市</view>
+  <block
+    wx:if="{{historyCity.length}}"
+  >
+    <view
+      class='city-index history'
+      id="city-to-history"
+    >历史访问城市</view>
+    <view class='city-highlight'>
+
+      <text
+        wx:for="{{historyCity}}"
+        wx:key="*this"
+        bind:tap="onSelectCity"
+        data-name="{{item}}"
+      >{{item}}</text>
+    </view>
+  </block>
+
+  <view
+    class='city-index hot'
+    id="city-to-hot"
+  >热门城市</view>
   <view class='city-highlight'>
-    <text>北京</text>
-    <text>成都</text>
-    <text>重庆</text>
-  </view>
-  <view class='city-index hot'>热门城市</view>
-  <view class='city-highlight'>
-    <text>北京</text>
-    <text>成都</text>
-    <text>重庆</text>
-    <text>广州</text>
-    <text>杭州</text>
-    <text>南京</text>
+    <text
+      wx:for="{{hotCity}}"
+      wx:key="*this"
+      data-name="{{item}}"
+      catch:tap="onSelectCity"
+    >{{item}}</text>
   </view>
   <block wx:for="{{cityData}}" wx:key="letter">
     <view
-    class="city-index {{item.letter}}"
+      class="city-index {{item.letter}}"
+      id="city-to-{{item.letter}}"
     >
       {{item.letter}}
     </view>
@@ -30,22 +57,27 @@
         class="city-item"
         wx:for="{{item.citys}}"
         wx:key="*this"
+        catch:tap="onSelectCity"
+        data-name="{{item}}"
       >{{item}}</view>
     </view>
 
   </block>
 </view>
-<view class="scroll-mask" hidden="{{isHideMask}}"></view>
+
 <view class='index-list-wrap'
   bind:touchstart="onCityLetterTap"
 >
   <view
     class='index-list'
-    bind:touchmove="onLetterTouchMove"
-    bind:touchstart="onForbidOverflow"
-    bind:touchend="onApproveOverflow"
+    catch:touchmove="onLetterTouchMove"
   >
-    <text class="sel-item" id="history" data-type="fastCheck">历史</text>
+    <text
+      wx:if="{{historyCity.length}}"
+      class="sel-item"
+      id="history"
+      data-type="fastCheck"
+    >历史</text>
     <text class="sel-item" id="hot" data-type="fastCheck" >热门</text>
     <text
       wx:for="{{cityData}}"

@@ -1,12 +1,20 @@
 /* pages/cityindex/index.wxss */
 page {
-  height: 100%;
+  /* height: 100%; */
   background: #f0f0f0;
+}
+.city-list{
+  /* height: 100%; */
 }
 .city-group {
   padding-left: 29rpx;
   background: #fff;
   border-bottom: 1px solid #dfdfdf;
+}
+.locate-type{
+  font-size: 8pt;
+  color: #BFBFBF;
+  margin-left: 15rpx;
 }
 .city-item {
   font: 26rpx/90rpx "宋体";
@@ -62,12 +70,5 @@ page {
   bottom: 0;
   right: 0;
   z-index: 1;
-  background: red;
-}
-.forbit-overflow{
-  height: 100%;
-  overflow: hidden;
-}
-.approve-overflow{
-  overflow: auto;
+  background: rgba(207, 146, 44, 0.5);
 }

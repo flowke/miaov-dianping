@@ -13,23 +13,28 @@ page {
 .loading {
   font: 26rpx/80rpx "宋体";
   text-align: center;
-  color: #666;  
+  color: #666;
 }
 .header {
   height: 92rpx;
   background: #181818;
-} 
+}
 .city {
   position: relative;
   float: left;
   color: #e2b689;
   padding: 0 31rpx;
+  max-width: 5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font: 26rpx/92rpx "宋体";
 }
 .city:after {
   content: "";
   position: absolute;
-  left: 92rpx;
+  /* left: 92rpx; */
+  right: 0;
   top: 42rpx;
   border: 8.333rpx solid;
   border-color: #d4ab81 transparent transparent;
