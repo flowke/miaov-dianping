@@ -7,7 +7,7 @@
       wx:if="{{!hasAuthLocation}}"
       catch:tap="onAuthLocation"
     >
-      请点击授权位置以获取位置服务
+      请点击以获取位置服务
     </view>
 
     <view
