@@ -35,22 +35,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    // 获取位置流程
-    this._getLocation()
-    .then(city=>{
-      this.setData({
-        locateCity: city,
-        hasAuthLocation: true
-      })
-    })
-    .catch(e=>{
-      if(e.errMsg === 'authorize:fail auth deny'){
-        this.setData({
-          hasAuthLocation: false
-        })
-      }
-    });
+  onLoad: function (options){
+    console.log('load');
+
   },
 
   /**
@@ -71,6 +58,22 @@ Page({
         historyCity
       });
     };
+
+    // 获取位置流程
+    this._getLocation()
+    .then(city=>{
+      this.setData({
+        locateCity: city,
+        hasAuthLocation: true
+      })
+    })
+    .catch(e=>{
+      if(e.errMsg === 'authorize:fail auth deny'){
+        this.setData({
+          hasAuthLocation: false
+        })
+      }
+    });
 
 
   },
