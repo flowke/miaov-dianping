@@ -1,7 +1,7 @@
 1.获取收藏列表
 URL: 域名/index.php/fav/getlist?callback=jQuery111307357226584186844_1525699312316
 POST:传参
-open_id:微信登陆后到open_id（POST传）
+code: 微信登陆后到code（POST传）
 
 返回结果说明:
 jQuery111307357226584186844_1525699312316({code: 0, data: [{fav_id: "1", shop_id: "123", create_time: "2018-10-05 00:00:00"}]})
@@ -16,12 +16,10 @@ data [
     fav_id:收藏到自增ID(唯一的) 用于删除使用
     shod_id:收藏到商品ID(唯一的)
     create_time:收藏到时间
-]
-
+];
 
 code : 1
 msg  : 登陆失效
-
 
 2.增加收藏
 URL: 域名/index.php/fav/addfav?callback=jQuery111307357226584186844_1525699312316
@@ -90,4 +88,3 @@ article_id:文章ID
 
 服务器地址/data/detail/id.js    文章内容页
 数据：随意传入任何json数据
-
