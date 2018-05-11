@@ -17,3 +17,25 @@ const formatNumber = n => {
 module.exports = {
   formatTime: formatTime
 }
+var showBusy = text => wx.showToast({
+    title: text,
+    icon: 'loading',
+    duration: 10000
+})
+
+var showSuccess = text => wx.showToast({
+    title: text,
+    icon: 'success'
+})
+
+var showModel = (title, content) => {
+    wx.hideToast();
+
+    wx.showModal({
+        title,
+        content: JSON.stringify(content),
+        showCancel: false
+    })
+}
+
+module.exports = { formatTime, showBusy, showSuccess, showModel }

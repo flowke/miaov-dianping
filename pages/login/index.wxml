@@ -1,0 +1,9 @@
+<view>
+   <text id="text">需要您的授权才可以正常使用哈</text>
+   <button
+     open-type="getUserInfo"
+     id='btn'
+     type='warn'
+     bindgetuserinfo="onGetUserInfo"
+     >立即授权</button>
+</view>
