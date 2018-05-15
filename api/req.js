@@ -1,7 +1,7 @@
 const api = require('../helper/api');
 var config = require('../config')
 
-let baseURL = 'https://wx.miaov.com';
+let baseURL = 'http://www.koocv.com';
 
 let reqWithKey = (op)=>{
   return api.request({
@@ -13,10 +13,18 @@ let reqWithKey = (op)=>{
   })
 }
 
+exports.getCategory = ()=>{
+  return reqWithKey({
+    url: baseURL + '/article/category',
+    // method: 'POST'
+  }).then(res=>res.data)
+}
+
 exports.getShops = (data)=>{
   return reqWithKey({
 
-    url: baseURL + '/index.php/article/shoplist',
+    url: baseURL + '/article/shoplist',
+    method: 'POST',
     data
   })
   .then(res=>res.data)
@@ -48,13 +56,21 @@ let login = exports.login = (userResult)=>{
   })
 }
 
+exports.getShopDetail = (id)=>{
+  return reqWithKey({
+    url: baseURL + '/article/detail',
+    data: {id},
+    method: 'POST'
+  }).then(res=>res.data)
+}
+
 exports.getUser = ()=>{
 
   return api.getUserInfo()
   .then(res=>login(res))
   .then(res=>{
     return reqWithKey({
-      url: baseURL + '/user'
+      url: baseURL + '/wx/login',
     });
   })
   .then(res=>res.data)

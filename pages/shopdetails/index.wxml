@@ -3,12 +3,12 @@
     <view class='list'>
         <image src='/common/img.png' class='list-img'></image>
         <view class='list-details'>
-          <view class='list-title'>大碗居（万柳店）</view>
+          <view class='list-title'>{{info.title}}</view>
           <view class='clear'>
             <view class='score'>
-              <view class='score-nub'></view> 
+              <view class='score-nub'></view>
             </view>
-            <text class='price'>￥81/人</text>
+            <text class='price'>￥{{info.cost}}/人</text>
           </view>
           <view class='clear score-details'>
             <text>环境:8.2</text>
@@ -28,6 +28,6 @@
       <view class='position'>辉煌国际大厦西6号楼319室</view>
       <view class='time'>距您步行600m,需要7分钟</view>
     </view>
-  </view>  
+  </view>
   <button type='default' class='btn'>收藏</button>
 </view>

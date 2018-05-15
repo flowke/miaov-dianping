@@ -1,4 +1,4 @@
-<import src="/common/template/list.wxml" />
+<import src="/common/template/list.wxml"/>
 <scroll-view class='page' scroll-y>
     <view class='header'>
         <navigator url='/pages/cityindex/index' class='city'>{{curtCity}}</navigator>
@@ -30,7 +30,7 @@
     </view>
     <view class='hot'>
       <text class='title'>猜你喜欢</text>
-      <template is="list" />
+      <template is="list" data="{{list:guessLike}}"/>
     </view>
     <view class='loading'>正在加载更多内容…</view>
 </scroll-view>

@@ -8,7 +8,7 @@
           <view class='menu-item menu-item-active'>500米</view>
           <view class='menu-item'>1000米</view>
           <view class='menu-item'>2000米</view>
-          <view class='menu-item'>5000米</view>
+          <view class='menu-item'>5000米</view>f
         </view>
         <view id='sort-menu' class='menu'>
           <view class='menu-item menu-item-active'>离我最近</view>

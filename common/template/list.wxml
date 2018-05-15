@@ -1,43 +1,19 @@
 <template name="list">
   <view class='shopList'>
-    <view class='list'>
-      <navigator url='/pages/shopdetails/index'>
+    <view class='list' wx:for="{{list}}" wx:key="{{item.id}}">
+      <navigator url="/pages/shopdetails/index?id={{item.id}}">
         <image src='/common/img.png' class='list-img'></image>
         <view class='list-details'>
-          <view class='list-title'>大碗居（万柳店）</view>
+          <view class='list-title'>{{item.title}}</view>
           <view class='clear'>
             <view class='score'>
-              <view class='score-nub'></view> 
+              <view class='score-nub'></view>
             </view>
-            <text class='price'>￥81/人</text>
+            <text class='price'>￥{{item.cost}}/人</text>
           </view>
           <view class='place'>
-            草桥<text class='classify'>北京菜</text>
-            <text class='distance'>855m</text>    
-          </view>
-          <view class='label'>
-            <text>古色古香</text>
-            <text>菜色精致</text>
-            <text>菜色精致</text>
-            <text>菜色精致</text>
-          </view>
-        </view>
-      </navigator>
-    </view>
-    <view class='list'>
-      <navigator url='/pages/shopdetails/index'>
-        <image src='/common/img.png' class='list-img'></image>
-        <view class='list-details'>
-          <text class='list-title'>大碗居（万柳店）</text>
-          <view class='clear'>
-            <view class='score'>
-              <view class='score-nub'></view> 
-            </view>
-            <text class='price'>￥81/人</text>
-          </view>
-          <view class='place'>
-            草桥 <text>北京菜</text>
-            <text class='distance'>855m</text>    
+            {{item.position}}<text class='classify'>北京菜</text>
+            <text class='distance'>{{item.distance}}</text>
           </view>
           <view class='label'>
             <text>古色古香</text>
@@ -49,4 +25,4 @@
       </navigator>
     </view>
   </view>
-</template>  
+</template>

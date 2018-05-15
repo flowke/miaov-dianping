@@ -6,13 +6,31 @@ const app = getApp()
 
 Page({
   data: {
-    curtCity: '北京'
+    curtCity: '北京',
+    guessLike: [],
   },
   //事件处理函数
   bindViewTap: function() {
 
   },
   onLoad(){
+
+    req.getCategory()
+    .then(res=>{
+      console.log(res);
+    })
+
+    req.getShops({
+      page:1,
+      rows: 20
+    })
+    .then(res=>{
+      console.log(res);
+      this.setData({
+        guessLike: [...res]
+      })
+    });
+
     api.getSetting()
     .then(res=>{
       if(!res.authSetting['scope.userInfo']){
@@ -25,23 +43,25 @@ Page({
       }
     })
     .then(res=>{
+
       if(res.code===0){
         return req.getShops({
           page:1,
           rows: 20
-        })
+        });
       }else{
         throw new Error('未获取到用户信息')
       }
       // 初始化城市
-      // let city = wx.getStorageSync('curtCity');
-      // if(!city) city = '北京';
-      // this.setData({
-      //   curtCity: city
-      // });
+      let city = wx.getStorageSync('curtCity');
+
+      if(!city) city = '北京';
+      this.setData({
+        curtCity: city
+      });
     })
-    .then(res=>{
-      console.log(res);
+    .catch(e=>{
+      console.log(e);
     })
 
   },
