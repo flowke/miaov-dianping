@@ -29,5 +29,9 @@
       <view class='time'>距您步行600m,需要7分钟</view>
     </view>
   </view>
-  <button type='default' class='btn'>收藏</button>
+  <button
+    type='default'
+    class='btn'
+    bind:tap="onAddFav"
+    >收藏</button>
 </view>

@@ -6,21 +6,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info: {}
+    info: {},
+    shopID: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (query) {
-
+    this.setData({
+      shopID: query.id
+    });
     req.getShopDetail(query.id)
     .then(res=>{
-      console.log(res);
+      console.log(res, 'detail');
       this.setData({
         info: res.info
       })
     })
+  },
+
+  onAddFav(){
+    let userInfo = wx.getStorageSync('userInfo');
+    if(userInfo){
+      let {openId} = userInfo;
+      req.addfav({
+        open_id: openId,
+        article_id: this.data.shopID
+      })
+      .then(res=>{
+        console.log(res,'fav');
+      })
+    }else{
+
+    }
+
   },
 
   /**

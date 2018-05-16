@@ -1,14 +1,19 @@
 const req = require('../../api/req');
 Page({
+  query: {},
   onGetUserInfo({detail}){
-    if(detail.errMsg!=='getUserInfo:fail auth deny'){
+    let {path} = this.query;
+    if(detail.userInfo){
       req.login(detail)
       .then(res=>{
-        
+
         wx.redirectTo({
-          url: '/pages/index/index'
+          url: path ? path : '/pages/index/index'
         })
       })
     }
+  },
+  onLoad(query){
+    this.query = query;
   }
 })

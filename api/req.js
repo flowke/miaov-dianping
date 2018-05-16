@@ -4,24 +4,26 @@ var config = require('../config')
 let baseURL = 'http://www.koocv.com';
 
 let reqWithKey = (op)=>{
+  if(!op.header) op.header = {};
   return api.request({
     header: {
+      'Content-Type': 'application/x-www-form-urlencoded',
       'X-WX-Skey': wx.getStorageSync('SESSION_KEY'),
-      ...(op.header || {} )
+      ...op.header
     },
     ...op
   })
 }
 
 exports.getCategory = ()=>{
-  return reqWithKey({
+  return api.request({
     url: baseURL + '/article/category',
-    // method: 'POST'
+    method: 'POST'
   }).then(res=>res.data)
 }
 
 exports.getShops = (data)=>{
-  return reqWithKey({
+  return api.request({
 
     url: baseURL + '/article/shoplist',
     method: 'POST',
@@ -35,7 +37,7 @@ let login = exports.login = (userResult)=>{
   return api.login()
   .then(res=>{
     return api.request({
-      url: baseURL + '/login',
+      url: 'https://wx.miaov.com' + '/login',
       header: {
         'X-WX-Code': res.code,
         'X-WX-Encrypted-Data': userResult.encryptedData,
@@ -45,22 +47,20 @@ let login = exports.login = (userResult)=>{
   })
   .then(({data:res})=>{
     if(res.code===0){
+
       wx.setStorageSync('SESSION_KEY', res.data.skey);
-      return {
-        code: 0,
-        data: res.userinfo
-      }
+      return res.data.userinfo;
     }else{
-      return res;
+      throw res
     }
   })
 }
 
 exports.getShopDetail = (id)=>{
-  return reqWithKey({
+  return api.request({
     url: baseURL + '/article/detail',
     data: {id},
-    method: 'POST'
+    // method: 'POST'
   }).then(res=>res.data)
 }
 
@@ -70,8 +70,40 @@ exports.getUser = ()=>{
   .then(res=>login(res))
   .then(res=>{
     return reqWithKey({
-      url: baseURL + '/wx/login',
+      url: 'https://wx.miaov.com' + '/user',
     });
   })
   .then(res=>res.data)
+}
+// {
+//  open_id
+//  article_id
+// }
+exports.addfav = (data)=>{
+  return reqWithKey({
+    url: baseURL + '/fav/addfav',
+    method: 'POST',
+    data
+  }).then(res=>res.data);
+}
+//
+exports.delfav = (data)=>{
+  return reqWithKey({
+    url: baseURL + '/fav/delfav',
+    method: 'POST',
+    data
+  }).then(res=>res.data);
+}
+
+exports.getfav = (open_id)=>{
+  return exports.getUser()
+  .then(res=>{
+    return reqWithKey({
+      url: baseURL + '/fav/getlist',
+      method: 'POST',
+      data: {
+        open_id
+      }
+    })
+  }).then(res=>res.data);
 }

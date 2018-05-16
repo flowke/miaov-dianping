@@ -1,15 +1,21 @@
 <!--pages/user/index.wxml-->
 <view class='page'>
   <view class='user'>
-    <image class='avatar' src='{{user.avatar}}'></image>
-    <view class='user-info'>
-      <text>{{user.userName}}</text>
-      <text>{{user.gender==1?"男":"女"}}</text>
-    </view>
-    <view class='user-info'>{{user.city}}</view>
-  </view>  
+    <block wx:if="{{hasLogin}}">
+      <image class='avatar' src='{{user.avatarUrl}}'></image>
+      <view class='user-info'>
+        <text>{{user.nickName}}</text>
+        <text>{{user.gender==1?"男":"女"}}</text>
+      </view>
+      <view class='user-info'>{{user.country}}</view>
+    </block>
+    <button
+      wx:else
+      open-type="getUserInfo"
+      bindgetuserinfo="onGetUserInfo"
+    >获取用户头像</button>
+  </view>
   <view class='menu-list'>
     <navigator url='/pages/collect/index' class='menu-item'>收藏列表</navigator>
   </view>
 </view>
-

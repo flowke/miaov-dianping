@@ -1,3 +1,5 @@
+const req = require('../../api/req');
+const api = require('../../helper/api');
 // page/user/index.js
 Page({
 
@@ -5,40 +7,52 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user: {
-      userName: "佚名",
-      gender: 0,
-      avatar: "",
-      city: "未知"
-    }
+    user: null,
+    hasLogin: false
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let _this = this;
-    wx.showLoading({
-      title: '加载中'
-    })
-    wx.getUserInfo({
-      lang: "zh_CN",
-      success: function (res) {
-        console.log(res);
-        _this.setData({
-          user: {
-            userName: res.userInfo.nickName,
-            gender: res.userInfo.gender,
-            avatar: res.userInfo.avatarUrl,
-            city: res.userInfo.city
-          }
-        });
-        wx.hideLoading()
-      },
-      fail: function (res) {
-        console.log(res);
+
+    api.getSetting()
+    .then(res=>{
+      if(res.authSetting['scope.userInfo']){
+        return api.getUserInfo();
+      }else{
+        throw '没有授权用户信息'
       }
     })
+    .then(res=>{
+      let userInfo = wx.getStorageSync('userInfo');
+      return userInfo ? userInfo : req.login(res);
+    })
+    .then(res=>{
+      if(!res) return;
+      this.setData({
+        hasLogin: true,
+        user: res
+      });
+      wx.setStorageSync('userInfo', res);
+    })
+    .catch(e=>{
+      console.log(e);
+    })
+  },
+
+  onGetUserInfo({detail}){
+    if(!detail.userInfo) return ;
+    req.login(detail)
+    .then(info=>{
+      wx.setStorageSync('userInfo', info);
+      this.setData({
+        user: info,
+        hasLogin: true
+      })
+    });
+
   },
 
   /**

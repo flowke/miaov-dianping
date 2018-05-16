@@ -1,3 +1,9 @@
+<wxs module="tags">
+  module.exports = function(tag){
+    return tag.split(',');
+  }
+</wxs>
+
 <template name="list">
   <view class='shopList'>
     <view class='list' wx:for="{{list}}" wx:key="{{item.id}}">
@@ -9,17 +15,14 @@
             <view class='score'>
               <view class='score-nub'></view>
             </view>
-            <text class='price'>￥{{item.cost}}/人</text>
+            <text class='price'>￥{{item.price}}/人</text>
           </view>
           <view class='place'>
-            {{item.position}}<text class='classify'>北京菜</text>
-            <text class='distance'>{{item.distance}}</text>
+            {{item.place}}<text class='classify'>北京菜</text>
+            <text class='distance'>{{item.distance}}m</text>
           </view>
           <view class='label'>
-            <text>古色古香</text>
-            <text>菜色精致</text>
-            <text>菜色精致</text>
-            <text>菜色精致</text>
+            <text wx:for="{{tags(item.label)}}" wx:key="*this">{{item}}</text>
           </view>
         </view>
       </navigator>
