@@ -1,5 +1,9 @@
 <import src="/common/template/list.wxml"/>
-<scroll-view class='page' scroll-y>
+<scroll-view
+    class='page'
+    scroll-y
+    bindscrolltolower="onScrollToLower"
+>
     <view class='header'>
         <navigator url='/pages/cityindex/index' class='city'>{{curtCity}}</navigator>
         <navigator url='/pages/user/index' class='userinfo'>
@@ -7,23 +11,23 @@
         </navigator>
     </view>
     <view class='nav'>
-        <navigator url='/pages/shoplist/index'>
+        <navigator url='/pages/shoplist/index?id=40'>
           <image src='/common/ico/food.png' mode="{{aspectFit}}"></image>
           <text>美食</text>
         </navigator>
-        <navigator url='/pages/shoplist/index'>
+        <navigator url='/pages/shoplist/index?id=45'>
           <image src='/common/ico/ktv.png' mode="{{aspectFit}}"></image>
           <text>KTV</text>
         </navigator>
-        <navigator url='/pages/shoplist/index'>
+        <navigator url='/pages/shoplist/index?id=48'>
           <image src='/common/ico/pedicure.png' mode="{{aspectFit}}"></image>
           <text>足疗/按摩</text>
         </navigator>
-        <navigator url='/pages/shoplist/index'>
+        <navigator url='/pages/shoplist/index?id=41'>
           <image src='/common/ico/hotel.png'mode="{{aspectFit}}"></image>
           <text>酒店</text>
         </navigator>
-        <navigator url='/pages/shoplist/index'>
+        <navigator url='/pages/shoplist/index?id=49'>
           <image src='/common/ico/hair.png'mode="{{aspectFit}}"></image>
           <text>丽人/美发</text>
         </navigator>
@@ -32,5 +36,12 @@
       <text class='title'>猜你喜欢</text>
       <template is="list" data="{{list:guessLike}}"/>
     </view>
-    <view class='loading'>正在加载更多内容…</view>
+    <view
+        class='loading'
+        wx:if="{{showListLoading}}"
+    >正在加载更多内容…</view>
+    <view
+        class='loading'
+        wx:if="{{isLoadAll}}"
+    >没有更多内容</view>
 </scroll-view>

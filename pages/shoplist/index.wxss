@@ -14,7 +14,7 @@ page {
 .loading {
   font: 26rpx/80rpx "宋体";
   text-align: center;
-  color: #666;  
+  color: #666;
 }
 .inner {
   background: #fff;
@@ -46,6 +46,9 @@ page {
 .nav .active::after{
   font-family: "iconfont";
   content: "\e60b";
+}
+.show.menu, .show.mask{
+  display: block;
 }
 .menu {
   display: none;

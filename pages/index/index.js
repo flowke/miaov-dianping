@@ -8,6 +8,9 @@ Page({
   data: {
     curtCity: '北京',
     guessLike: [],
+    page: 1,
+    showListLoading: false,
+    isLoadAll: false,
   },
   //事件处理函数
   bindViewTap: function() {
@@ -20,9 +23,9 @@ Page({
       console.log(res,'category');
     })
 
-    req.getShops({
+    req.getShops(null,{
       page:1,
-      rows: 20
+      rows: 6
     })
     .then(res=>{
       console.log(res);
@@ -36,6 +39,35 @@ Page({
 
 
 
+  },
+  onScrollToLower(){
+
+    let {page, guessLike, showListLoading, isLoadAll} = this.data;
+
+    if(showListLoading || isLoadAll) return;
+    if(page===1) page++;
+    this.setData({
+      showListLoading: true
+    });
+    req.getShops(null,{
+      page: page,
+      rows: 6
+    })
+    .then(res=>{
+      if(res.error){
+        this.setData({
+          isLoadAll: true,
+          showListLoading: false
+        })
+      }else{
+        this.setData({
+          guessLike: [...guessLike,...res],
+          page: page +1,
+          showListLoading: false
+        });
+      }
+
+    });
   },
   getUserInfo: function(e) {
 

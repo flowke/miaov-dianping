@@ -1,22 +1,43 @@
 <import src="/common/template/list.wxml" />
-<scroll-view class='page' scroll-y>
+<scroll-view
+    class='page'
+    scroll-y
+    bindscrolltolower="onScrollToLower"
+>
     <view class='inner'>
-      <view class='nav'>
-        <text id='range-btn' class='active'>500米</text>
-        <text id='sort-btn'>离我最近</text>
-        <view id='range-menu' class='menu'>
-          <view class='menu-item menu-item-active'>500米</view>
-          <view class='menu-item'>1000米</view>
-          <view class='menu-item'>2000米</view>
-          <view class='menu-item'>5000米</view>f
+      <view
+          class='nav'
+          catch:tap="onFilter"
+      >
+        <text
+            id='range-btn'
+            data-type="range"
+            class='active'
+        >500米</text>
+        <text
+            id='sort-btn'
+            data-type="sort"
+        >离我最近</text>
+        <view id='range-menu' class='menu {{filterType==="range"?"show":""}}'>
+          <view class='menu-item menu-item-active' data-value="500">500米</view>
+          <view class='menu-item' data-value="1000">1000米</view>
+          <view class='menu-item' data-value="2000">2000米</view>
+          <view class='menu-item' data-value="5000">5000米</view>
         </view>
-        <view id='sort-menu' class='menu'>
-          <view class='menu-item menu-item-active'>离我最近</view>
-          <view class='menu-item'>评价最高</view>
+        <view id='sort-menu' class='menu {{filterType==="sort"?"show":""}}'>
+          <view class='menu-item menu-item-active' data-value="最近">离我最近</view>
+          <view class='menu-item' data-value="评价">评价最高</view>
         </view>
       </view>
-      <template is="list" />
-    </view>  
-    <view class='loading'>正在加载更多内容…</view>
-    <view class='mask'></view>
+      <template is="list" data="{{list: shopList}}"/>
+    </view>
+    <view
+        class='loading'
+        wx:if="{{showListLoading}}"
+    >正在加载更多内容…</view>
+    <view
+        class='loading'
+        wx:if="{{isLoadAll}}"
+    >没有更多内容</view>
+    <view class='mask {{!!filterType?"show":""}}'></view>
 </scroll-view>

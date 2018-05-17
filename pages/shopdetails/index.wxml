@@ -1,7 +1,7 @@
 <view class='page'>
   <view class='shop-details'>
     <view class='list'>
-        <image src='/common/img.png' class='list-img'></image>
+        <image src='http://www.koocv.com/{{info.image_path}}' class='list-img'></image>
         <view class='list-details'>
           <view class='list-title'>{{info.title}}</view>
           <view class='clear'>

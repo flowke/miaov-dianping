@@ -15,6 +15,7 @@ Page({
   onLoad: function (options) {
     let userInfo = wx.getStorageSync('userInfo');
     console.log(userInfo);
+
     req.getfav(userInfo.openId)
     .then(res=>{
       console.log(res, 'favList');

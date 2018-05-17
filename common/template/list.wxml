@@ -8,7 +8,7 @@
   <view class='shopList'>
     <view class='list' wx:for="{{list}}" wx:key="{{item.id}}">
       <navigator url="/pages/shopdetails/index?id={{item.id}}">
-        <image src='/common/img.png' class='list-img'></image>
+        <image src="http://www.koocv.com{{item.image_path}}" class='list-img'></image>
         <view class='list-details'>
           <view class='list-title'>{{item.title}}</view>
           <view class='clear'>

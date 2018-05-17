@@ -4,14 +4,16 @@ var config = require('../config')
 let baseURL = 'http://www.koocv.com';
 
 let reqWithKey = (op)=>{
+
   if(!op.header) op.header = {};
   return api.request({
+    ...op,
     header: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+
       'X-WX-Skey': wx.getStorageSync('SESSION_KEY'),
+      'Content-Type': 'application/x-www-form-urlencoded',
       ...op.header
     },
-    ...op
   })
 }
 
@@ -22,11 +24,13 @@ exports.getCategory = ()=>{
   }).then(res=>res.data)
 }
 
-exports.getShops = (data)=>{
+exports.getShops = (data,q)=>{
   return api.request({
-
-    url: baseURL + '/article/shoplist',
+    url: baseURL + `/article/shoplist?rows=${q.rows}&page=${q.page}`,
     method: 'POST',
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
     data
   })
   .then(res=>res.data)
@@ -96,14 +100,11 @@ exports.delfav = (data)=>{
 }
 
 exports.getfav = (open_id)=>{
-  return exports.getUser()
-  .then(res=>{
-    return reqWithKey({
-      url: baseURL + '/fav/getlist',
-      method: 'POST',
-      data: {
-        open_id
-      }
-    })
+  return reqWithKey({
+    url: baseURL + '/fav/getlist',
+    method: 'POST',
+    data: {
+      open_id
+    }
   }).then(res=>res.data);
 }
