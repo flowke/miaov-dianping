@@ -18,17 +18,16 @@ Page({
   },
   onLoad(){
 
-    req.getCategory()
-    .then(res=>{
-      console.log(res,'category');
-    })
+    // req.getCategory()
+    // .then(res=>{
+    //   console.log(res,'category');
+    // })
 
     req.getShops(null,{
       page:1,
       rows: 6
     })
     .then(res=>{
-      console.log(res);
       this.setData({
         guessLike: [...res]
       })
@@ -36,9 +35,12 @@ Page({
 
   },
   onShow: function () {
-
-
-
+    let city = wx.getStorageSync('curtCity');
+    if(city){
+      this.setData({
+        curtCity: city
+      });
+    }
   },
   onScrollToLower(){
 

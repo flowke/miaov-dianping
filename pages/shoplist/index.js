@@ -1,7 +1,9 @@
 const req = require('../../api/req');
 // pages/shoplist/index.js
-Page({
 
+Page({
+  rows: 6,
+  category_id: '',
   /**
    * 页面的初始数据
    */
@@ -10,7 +12,9 @@ Page({
     showListLoading: false,
     isLoadAll: false,
     page: 1,
-    filterType: ''
+    filterType: '',
+    distance: "500",
+    sort: 'distance'
   },
 
   /**
@@ -18,12 +22,16 @@ Page({
    */
   onLoad: function (query) {
     let {id} = query;
+    let {distance, sort} = this.data;
+
     this.category_id = id;
     req.getShops({
       category_id: id,
+      distance,
+      sort
     },{
       page: 1,
-      rows:6
+      rows: this.rows
     })
     .then(res=>{
       if(!res.error){
@@ -36,7 +44,14 @@ Page({
 
   onScrollToLower(){
 
-    let {page, shopList, showListLoading, isLoadAll} = this.data;
+    let {
+      page,
+      shopList,
+      showListLoading,
+      isLoadAll,
+      distance,
+      sort
+    } = this.data;
 
     if(showListLoading || isLoadAll) return;
     if(page===1) page++;
@@ -44,11 +59,15 @@ Page({
     this.setData({
       showListLoading: true
     });
+
     req.getShops({
-      category_id: this.category_id
+      category_id: this.category_id,
+      distance,
+      sort,
+      order: 'asc'
     },{
       page: page,
-      rows: 6
+      rows: this.rows
     })
     .then(res=>{
       if(res.error){
@@ -68,16 +87,61 @@ Page({
   },
 
   onFilter({target}){
-    let {dataset} = target;
+    let {filterType, page, sort, distance} = this.data;
+    let {dataset,} = target;
     if(dataset.type==='range'){
       this.setData({
         filterType: 'range'
-      })
+      });
     }else if(dataset.type==='sort'){
       this.setData({
         filterType: 'sort'
       })
+    };
+
+    if(filterType==='range' && dataset.value){
+      let {value} = dataset;
+      this.setData({
+        distance: value
+      });
     }
+    if(filterType==='sort' && dataset.value){
+      let {value} = dataset;
+      this.setData({
+        sort: value
+      });
+    }
+
+    if(dataset.value){
+      let {distance, sort} = this.data;
+
+      req.getShops({
+        category_id: this.category_id,
+        distance,
+        sort,
+        order: 'asc'
+      },{
+        page: 1,
+        rows: this.rows
+      })
+      .then(res=>{
+        if(!res.error){
+          this.setData({
+            shopList: [...res],
+            filterType: '',
+            page: 1,
+            isLoadAll: false,
+          });
+        };
+      })
+    }
+
+    if(filterType && filterType===this.data.filterType){
+      this.setData({
+        filterType: ''
+      })
+    }
+
   },
 
   /**

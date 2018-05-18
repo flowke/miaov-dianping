@@ -30,6 +30,7 @@ Page({
       return userInfo ? userInfo : req.login(res);
     })
     .then(res=>{
+
       if(!res) return;
       this.setData({
         hasLogin: true,

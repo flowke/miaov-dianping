@@ -1,6 +1,6 @@
 <wxs module="tags">
   module.exports = function(tag){
-    return tag.split(',');
+    return tag.split(',').filter(function(e){return !!e});
   }
 </wxs>
 
@@ -13,12 +13,12 @@
           <view class='list-title'>{{item.title}}</view>
           <view class='clear'>
             <view class='score'>
-              <view class='score-nub'></view>
+              <view class='score-nub' style="width:{{item.score*10}}%"></view>
             </view>
             <text class='price'>￥{{item.price}}/人</text>
           </view>
           <view class='place'>
-            {{item.place}}<text class='classify'>北京菜</text>
+            {{item.place}}<text class='classify'>{{item.classify}}</text>
             <text class='distance'>{{item.distance}}m</text>
           </view>
           <view class='label'>

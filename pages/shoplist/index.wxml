@@ -12,21 +12,22 @@
         <text
             id='range-btn'
             data-type="range"
-            class='active'
-        >500米</text>
+            class='{{filterType==="range"?"active":""}}'
+        >{{distance}}米</text>
         <text
             id='sort-btn'
             data-type="sort"
-        >离我最近</text>
+            class='{{filterType==="sort"?"active":""}}'
+        >{{score==="distance"?"离我最近":"评价最高"}}</text>
         <view id='range-menu' class='menu {{filterType==="range"?"show":""}}'>
-          <view class='menu-item menu-item-active' data-value="500">500米</view>
-          <view class='menu-item' data-value="1000">1000米</view>
-          <view class='menu-item' data-value="2000">2000米</view>
-          <view class='menu-item' data-value="5000">5000米</view>
+          <view class='menu-item {{distance==500?"menu-item-active":""}}' data-value="500">500米</view>
+          <view class='menu-item {{distance==1000?"menu-item-active":""}}' data-value="1000">1000米</view>
+          <view class='menu-item {{distance==2000?"menu-item-active":""}}' data-value="2000">2000米</view>
+          <view class='menu-item {{distance==5000?"menu-item-active":""}}' data-value="5000">5000米</view>
         </view>
         <view id='sort-menu' class='menu {{filterType==="sort"?"show":""}}'>
-          <view class='menu-item menu-item-active' data-value="最近">离我最近</view>
-          <view class='menu-item' data-value="评价">评价最高</view>
+          <view class='menu-item {{sort=="distance"?"menu-item-active":""}}' data-value="distance">离我最近</view>
+          <view class='menu-item {{sort=="score"?"menu-item-active":""}}' data-value="score">评价最高</view>
         </view>
       </view>
       <template is="list" data="{{list: shopList}}"/>

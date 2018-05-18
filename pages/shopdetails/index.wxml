@@ -1,31 +1,37 @@
 <view class='page'>
   <view class='shop-details'>
     <view class='list'>
-        <image src='http://www.koocv.com/{{info.image_path}}' class='list-img'></image>
+        <image
+          src="http://www.koocv.com{{info.image_path}}"
+          class='list-img'
+        />
         <view class='list-details'>
           <view class='list-title'>{{info.title}}</view>
           <view class='clear'>
             <view class='score'>
               <view class='score-nub'></view>
             </view>
-            <text class='price'>￥{{info.cost}}/人</text>
+            <text class='price'>￥{{info.price}}/人</text>
           </view>
           <view class='clear score-details'>
-            <text>环境:8.2</text>
-            <text>服务:8.2</text>
+            <text>环境:{{info.environment}}</text>
+            <text>服务:{{info.service}}</text>
           </view>
           <view class='place'>
-            草桥<text class='classify'>北京菜</text>
+            {{info.place}}<text class='classify'>{{info.classify}}</text>
           </view>
         </view>
     </view>
     <view class='shop-info'>
-      <text class='time'>营业至23:00</text>
-      <text class='box'>包厢</text>
-      <text class='wifi'>WIFI</text>
+      <text class='time'>{{info.shopHours}}</text>
+      <text class='box' wx:if="{{info.hasBox!=='0'}}">包厢</text>
+      <text class='wifi' wx:if="{{info.hasWifi!=='0'}}">WIFI</text>
+      <text wx:if="{{info.hasSofa!=='0'}}">沙发位</text>
+      <text wx:if="{{info.hasSight!=='0'}}">景观位</text>
+      <text wx:if="{{info.hasBabyChair!=='0'}}">宝宝椅子</text>
     </view>
     <view class='distance'>
-      <view class='position'>辉煌国际大厦西6号楼319室</view>
+      <view class='position'>{{location}}</view>
       <view class='time'>距您步行600m,需要7分钟</view>
     </view>
   </view>
@@ -33,5 +39,5 @@
     type='default'
     class='btn'
     bind:tap="onAddFav"
-    >收藏</button>
+    >{{favID?"已收藏":"收藏"}}</button>
 </view>

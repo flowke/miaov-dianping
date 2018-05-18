@@ -1,4 +1,6 @@
-const req = require('../../api/req')
+const req = require('../../api/req');
+const api = require('../../helper/api');
+const qqmap = api.createQQMap('THSBZ-P32RD-6ML46-HC3NN-XRGJ5-ZTBUK');
 // pages/shopdetails/index.js
 Page({
 
@@ -7,7 +9,10 @@ Page({
    */
   data: {
     info: {},
-    shopID: null
+    shopID: null,
+    hasFav: false,
+    favID: '',
+    location: ''
   },
 
   /**
@@ -19,76 +24,82 @@ Page({
     });
     req.getShopDetail(query.id)
     .then(res=>{
-      console.log(res, 'detail');
       this.setData({
         info: res.info
+      });
+      return res.info;
+    })
+    .then(info=>{
+      let userInfo = wx.getStorageSync('userInfo');
+
+      qqmap.reverseGeocoder({
+        location: {
+          latitude: info.lat,
+          longitude: info.lng
+        }
+      })
+      .then(res=>{
+        let loc = '';
+        let {
+          address,
+          formatted_addresses
+        } = res.result;
+
+        if(address) loc = address;
+        if(formatted_addresses) loc = formatted_addresses.recommend;
+
+        this.setData({
+          location: loc
+        })
+
+      });
+
+      return req.checkFav({
+        open_id: userInfo.openId,
+        article_id: info.id
       })
     })
+    .then(res=>{
+      if(res.code===0){
+        this.setData({
+          favID: res.fav_id
+        });
+      }
+    })
+
   },
 
   onAddFav(){
     let userInfo = wx.getStorageSync('userInfo');
-    if(userInfo){
-      let {openId} = userInfo;
+    let {favID} = this.data;
+    if(favID){
+      req.delfav({
+        open_id: userInfo. openId,
+        article_id: this.data.shopID,
+        fav_id: favID
+      })
+      .then(res=>{
+        if(res.code===0){
+          this.setData({
+            favID: ''
+          })
+        }
+      })
+    }else{
       req.addfav({
-        open_id: openId,
+        open_id: userInfo.openId,
         article_id: this.data.shopID
       })
       .then(res=>{
-        console.log(res,'fav');
-      })
-    }else{
+        if(res.code===0){
+          this.setData({
+            favID: res.fav_id
+          })
+        }
 
+      })
     }
 
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

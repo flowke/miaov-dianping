@@ -25,6 +25,7 @@ exports.getCategory = ()=>{
 }
 
 exports.getShops = (data,q)=>{
+  console.log('innn');
   return api.request({
     url: baseURL + `/article/shoplist?rows=${q.rows}&page=${q.page}`,
     method: 'POST',
@@ -106,5 +107,13 @@ exports.getfav = (open_id)=>{
     data: {
       open_id
     }
+  }).then(res=>res.data);
+}
+
+exports.checkFav = (data)=>{
+  return reqWithKey({
+    url: baseURL + '/fav/getfavid',
+    data,
+    method: 'POST',
   }).then(res=>res.data);
 }
