@@ -42,7 +42,7 @@ Page({
       });
     }
   },
-  onScrollToLower(){
+  onReachBottom(){
 
     let {page, guessLike, showListLoading, isLoadAll} = this.data;
 

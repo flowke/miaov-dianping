@@ -6,10 +6,8 @@ Page({
     if(detail.userInfo){
       req.login(detail)
       .then(res=>{
-
-        wx.redirectTo({
-          url: path ? path : '/pages/index/index'
-        })
+        wx.setStorageSync('userInfo', res);
+        wx.navigateBack()
       })
     }
   },

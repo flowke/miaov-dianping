@@ -72,9 +72,15 @@ Page({
   onAddFav(){
     let userInfo = wx.getStorageSync('userInfo');
     let {favID} = this.data;
+
+    if(!userInfo){
+      wx.navigateTo({url:'/pages/login/index'});
+      return;
+    }
+
     if(favID){
       req.delfav({
-        open_id: userInfo. openId,
+        open_id: userInfo.openId,
         article_id: this.data.shopID,
         fav_id: favID
       })
@@ -99,7 +105,5 @@ Page({
 
       })
     }
-
-
   },
 })

@@ -1,5 +1,5 @@
 <import src="/common/template/list.wxml"/>
-<scroll-view
+<view
     class='page'
     scroll-y
     bindscrolltolower="onScrollToLower"
@@ -44,4 +44,4 @@
         class='loading'
         wx:if="{{isLoadAll}}"
     >没有更多内容</view>
-</scroll-view>
+</view>
